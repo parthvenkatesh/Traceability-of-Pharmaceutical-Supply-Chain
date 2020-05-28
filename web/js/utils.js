@@ -399,7 +399,7 @@ async function init_web3() {
     }
   ]);
 
-  window.pm.options.address = "0x38f1b2f36F6144bAB88AEAc327f551EFc0d8cC58";
+  window.pm.options.address = "0xA47829e5763b0CC8C91a535583aeb75e9031CfB4";
   window.co = new web3.eth.Contract([
     {
       constant: true,
@@ -544,7 +544,7 @@ async function init_web3() {
       signature: "0xac814490"
     }
   ]);
-  window.co.options.address = "0x11c919A730371f91610C4DFB6761C89Fe75D7803";
+  window.co.options.address = "0xe9bfc31Cf6861a1cc7DFE79bd6205A137Ea62DF3";
 }
 
 async function getOwnerHistoryFromEvents(event, p_hash) {

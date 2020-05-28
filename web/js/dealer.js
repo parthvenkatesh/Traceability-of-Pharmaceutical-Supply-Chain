@@ -8,7 +8,8 @@ import {
 
 window.onload = async function() {
   var x = await init_web3();
-
+  var id = window.accounts[2];
+  document.getElementById("dealer-address").innerHTML = id;
   //First, get all the parts and products that belong to this dealer
   getOwnedItemsFromEvent(window.accounts[2], "TransferPartOwnership").then(
     parts => {

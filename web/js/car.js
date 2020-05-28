@@ -27,6 +27,9 @@ window.onload = async function() {
   //   });
 
   //Get all the parts that belonged to this factory and then check the ones that still do
+
+  var id = window.accounts[1];
+  document.getElementById("car-factory-address").innerHTML = id;
   var parts = await getOwnedItemsFromEvent(
     window.accounts[0],
     "TransferPartOwnership"

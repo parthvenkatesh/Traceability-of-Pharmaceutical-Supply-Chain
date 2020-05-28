@@ -9,8 +9,11 @@ import {
 } from "./utils.js";
 
 window.onload = async function() {
+
   var x = await init_web3(); //calling init function in util
 
+  var id = window.accounts[0];
+  document.getElementById("part-factory-address").innerHTML = id;
   document.getElementById("build-part").addEventListener("click", function() {
     console.log("Create Part");
     // Get required data and create part on blockchain using web3
