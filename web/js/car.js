@@ -39,10 +39,8 @@ window.onload = async function() {
     var owners = await getOwnerHistoryFromEvents(
       "TransferPartOwnership",
       parts[i]
-    );
-    console.log(owners);
-    console.log(window.accounts[1]);
-
+	);
+	
     if (owners[owners.length - 1] == window.accounts[1]) {
       addItemToList(parts[i], "car-part-list", carPartListManager);
     }
