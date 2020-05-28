@@ -1,4 +1,4 @@
-# OpenTrack
+# Pharmaceuticals
 A Blockchain and ML based smart contract
 
 ## Installation Steps
