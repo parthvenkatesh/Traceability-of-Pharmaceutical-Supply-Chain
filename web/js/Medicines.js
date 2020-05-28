@@ -14,6 +14,7 @@ window.onload = async function() {
   var x = await init_web3(); //calling init function in util
 
   var id = window.accounts[0];
+  console.log("hello from the other side");
   document.getElementById("part-factory-address").innerHTML = id;
 
   var parts = await getOwnedItemsFromEvent(

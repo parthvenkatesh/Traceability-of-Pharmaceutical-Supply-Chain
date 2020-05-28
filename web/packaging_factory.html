@@ -10,7 +10,7 @@
     />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.33/dist/web3.min.js"></script>
-    <script type="module" src="./js/car.js"></script>
+    <script type="module" src="./js/Packaging.js"></script>
     <script src="./js/utils.js" type="module"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   </head>
@@ -21,14 +21,14 @@
         <div class="nav-wrapper">
           <!-- <a href="#" class="brand-logo right">Logo</a> -->
           <ul id="nav-mobile" class="left hide-on-med-and-down">
-            <li><a href="index.html">Parts Factory</a></li>
-            <li><a href="car_factory.html">Car Factory</a></li>
+            <li><a href="index.html">Medicine Factory</a></li>
+            <li><a href="packaging_factory.html">Packaging factory</a></li>
             <li><a href="dealer.html">Dealer</a></li>
             <li><a href="../web/forecasting/index.html">Forecast</a></li>
           </ul>
         </div>
       </nav>
-      <h2>Car Factory</h2>
+      <h2>Packaging factory</h2>
       <div class="row">
         <div class="col s6">
           <label>Address: </label>
@@ -40,7 +40,7 @@
       <div class="row">
         <div class="col s6">
           <div id="car-part-list" class="collection with-header">
-            <p class="collection-header">Parts Owned</p>
+            <p class="collection-header">Medicines Owned</p>
           </div>
         </div>
         <div class="col s6">
@@ -51,14 +51,14 @@
             placeholder="Car Serial Number"
           />
           <button id="build-car" class="waves-effect waves-light btn">
-            Build Car
+            Build Package
           </button>
         </div>
       </div>
       <div class="row">
         <div class="col s6">
           <div id="car-list" class="collection with-header">
-            <p class="collection-header">Cars Owned</p>
+            <p class="collection-header">Packages Owned</p>
           </div>
         </div>
         <div class="col s6">
@@ -67,7 +67,7 @@
             <p id="car-details-address"></p>
             <label>Serial Number:</label>
             <p id="car-details-serial-num"></p>
-            <label>Parts:</label>
+            <label>Medicines:</label>
             <p id="car-details-parts"></p>
             <label>Creation Date:</label>
             <p id="car-details-creation-date"></p>

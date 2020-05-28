@@ -240,8 +240,8 @@ async function init_web3() {
   web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
 
   //Load accounts
-  window.accounts = await web3.eth.getAccounts();
-  console.log("Loaded accounts");
+  window.accounts = await web3.eth.getAccounts(console.log);
+  console.log("these are the accounts accounts:", window.accounts);
   // Is there is an injected web3 instance?
 
   // The interface definition for your smart contract (the ABI)
@@ -399,7 +399,7 @@ async function init_web3() {
     }
   ]);
 
-  window.pm.options.address = "0xA47829e5763b0CC8C91a535583aeb75e9031CfB4";
+  window.pm.options.address = "0x1EF64Cd0f5a955B4d9999219f02F34BA956A79af";
   window.co = new web3.eth.Contract([
     {
       constant: true,
@@ -544,7 +544,7 @@ async function init_web3() {
       signature: "0xac814490"
     }
   ]);
-  window.co.options.address = "0xe9bfc31Cf6861a1cc7DFE79bd6205A137Ea62DF3";
+  window.co.options.address = "0x5109Ff2bd26D8494C21dF0e6bf505FaBdAC2b926";
 }
 
 async function getOwnerHistoryFromEvents(event, p_hash) {
