@@ -27,18 +27,18 @@ window.onload = async function() {
       console.log("prod Events");
       console.log(products);
       for (var i = 0; i < products.length; i++) {
-        addItemToList(products[i], "car-history", dealerProductListManager);
+        addItemToList(products[i], "product-history", dealerProductListManager);
       }
     }
   );
 
   // document.getElementById("get-history").addEventListener("click", function () {
-  //     console.log("Get Car History")
+  //     console.log("Get product History")
 
   //     var addr = document.getElementById("part-addr").value
 
   //     if (addr != "") {
-  //         addItemToList(addr, "car-part-list", carPartListManager)
+  //         addItemToList(addr, "product-part-list", productPartListManager)
   //     }
   // })
 };

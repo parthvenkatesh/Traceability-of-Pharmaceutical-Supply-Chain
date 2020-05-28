@@ -1,12 +1,12 @@
 import {
-  carListManager,
+  productListManager,
   addItemToList,
   format_date,
   init_web3,
-  carPartListManager,
+  productPartListManager,
   getMultipleActivePart,
   getActivePart,
-  clearCarDetails,
+  clearproductDetails,
   getOwnerHistoryFromEvents,
   getOwnedItemsFromEvent
 } from "./utils.js";
@@ -22,14 +22,14 @@ window.onload = async function() {
   //     var addr = document.getElementById("part-addr").value;
 
   //     if (addr != "") {
-  //       addItemToList(addr, "car-part-list", carPartListManager);
+  //       addItemToList(addr, "product-part-list", productPartListManager);
   //     }
   //   });
 
   //Get all the parts that belonged to this factory and then check the ones that still do
 
   var id = window.accounts[1];
-  document.getElementById("car-factory-address").innerHTML = id;
+  document.getElementById("product-factory-address").innerHTML = id;
   var parts = await getOwnedItemsFromEvent(
     window.accounts[0],
     "TransferPartOwnership"
@@ -42,17 +42,17 @@ window.onload = async function() {
 	);
 	
     if (owners[owners.length - 1] == window.accounts[1]) {
-      addItemToList(parts[i], "car-part-list", carPartListManager);
+      addItemToList(parts[i], "product-part-list", productPartListManager);
     }
   }
 
-  document.getElementById("build-car").addEventListener("click", function() {
-    console.log("Build Car");
+  document.getElementById("build-product").addEventListener("click", function() {
+    console.log("Build product");
 
     //First, get the serial number
-    var serial = document.getElementById("create-car-serial-number").value;
+    var serial = document.getElementById("create-product-serial-number").value;
     if (serial != "") {
-      //Then the parts that will be present on the car
+      //Then the parts that will be present on the product
       var part_list = getMultipleActivePart();
       var part_array = [];
       for (var i = 0; i < part_list.length; i++) {
@@ -65,13 +65,13 @@ window.onload = async function() {
       // }
       var creation_date = format_date();
 
-      console.log("Create car with params");
+      console.log("Create product with params");
       console.log(serial);
       console.log(part_array);
       console.log(creation_date);
-      //Finally, build the car
+      //Finally, build the product
       window.pm.methods
-        .buildProduct(serial, "Car", creation_date, part_array)
+        .buildProduct(serial, "product", creation_date, part_array)
         .send({ from: window.accounts[1], gas: 2000000 }, function(
           error,
           result
@@ -79,19 +79,19 @@ window.onload = async function() {
           if (error) {
             console.log(error);
           } else {
-            console.log("Car created");
-            //Add hash to car owned list
-            var car_sha = web3.utils.soliditySha3(
+            console.log("product created");
+            //Add hash to product owned list
+            var product_sha = web3.utils.soliditySha3(
               window.accounts[1],
               web3.utils.fromAscii(serial),
-              web3.utils.fromAscii("Car"),
+              web3.utils.fromAscii("product"),
               web3.utils.fromAscii(creation_date)
             );
-            addItemToList(car_sha, "car-list", carListManager);
+            addItemToList(product_sha, "product-list", productListManager);
 
             //Remove parts from available list
             for (var i = 0; i < part_list.length; i++) {
-              part_list[i].removeEventListener("click", carPartListManager);
+              part_list[i].removeEventListener("click", productPartListManager);
               part_list[i].parentElement.removeChild(part_list[i]);
             }
           }
@@ -100,14 +100,14 @@ window.onload = async function() {
   });
 
   document
-    .getElementById("car-change-ownership-btn")
+    .getElementById("product-change-ownership-btn")
     .addEventListener("click", function() {
       console.log("Change Ownership");
-      //Get car hash from active item on owned list
+      //Get product hash from active item on owned list
 
-      var hash_element = getActivePart("car-list");
+      var hash_element = getActivePart("product-list");
       if (hash_element != undefined) {
-        var to_address = document.getElementById("car-change-ownership-input")
+        var to_address = document.getElementById("product-change-ownership-input")
           .value;
         if (to_address != "") {
           window.co.methods
@@ -122,7 +122,7 @@ window.onload = async function() {
                 console.log("Changed ownership");
                 //Logic to remove item from owned list
                 hash_element.parentElement.removeChild(hash_element);
-                clearCarDetails();
+                clearproductDetails();
               }
             });
         }

@@ -69,9 +69,9 @@ function populateDetails(item) {
     });
 }
 
-function populateCarDetails(item) {
+function populateproductDetails(item) {
   getLocation();
-  console.log("Populate Car details, get info from chain");
+  console.log("Populate product details, get info from chain");
   console.log(item);
   //Query blockchain for data to fill element
   window.pm.methods
@@ -81,11 +81,11 @@ function populateCarDetails(item) {
       else {
         console.log("Product info");
         console.log(prod_info);
-        document.getElementById("car-details-address").textContent =
+        document.getElementById("product-details-address").textContent =
           prod_info["manufacturer"];
-        document.getElementById("car-details-serial-num").textContent =
+        document.getElementById("product-details-serial-num").textContent =
           prod_info["serial_number"];
-        document.getElementById("car-details-creation-date").textContent =
+        document.getElementById("product-details-creation-date").textContent =
           prod_info["creation_date"];
 
         //Get parts too
@@ -100,7 +100,7 @@ function populateCarDetails(item) {
                 parts_str += result[i] + "\n";
               }
               document.getElementById(
-                "car-details-parts"
+                "product-details-parts"
               ).textContent = parts_str;
               //Check if the product is already registered, and do it otherwise
               window.co.methods
@@ -122,7 +122,7 @@ function populateCarDetails(item) {
                             if (error) {
                               console.log(error);
                             } else {
-                              console.log("Car Ownership added");
+                              console.log("product Ownership added");
                             }
                           }
                         );
@@ -142,11 +142,11 @@ function clearDetails() {
   document.getElementById("details-creation-date").textContent = "";
 }
 
-function clearCarDetails() {
-  document.getElementById("car-details-address").textContent = "";
-  document.getElementById("car-details-serial-num").textContent = "";
-  document.getElementById("car-details-parts").textContent = "";
-  document.getElementById("car-details-creation-date").textContent = "";
+function clearproductDetails() {
+  document.getElementById("product-details-address").textContent = "";
+  document.getElementById("product-details-serial-num").textContent = "";
+  document.getElementById("product-details-parts").textContent = "";
+  document.getElementById("product-details-creation-date").textContent = "";
 }
 
 function partListManager() {
@@ -161,19 +161,19 @@ function partListManager() {
   }
 }
 
-function carPartListManager() {
-  // Select item to use on car manufacturing
+function productPartListManager() {
+  // Select item to use on product manufacturing
   toggleActive(this);
 }
 
-function carListManager() {
+function productListManager() {
   toggleActive(this);
   clearActiveExcept(this);
 
   if (this.classList.contains("active")) {
-    populateCarDetails(this.textContent);
+    populateproductDetails(this.textContent);
   } else {
-    clearCarDetails();
+    clearproductDetails();
   }
 }
 
@@ -225,7 +225,7 @@ function getMultipleActivePart() {
   var item_list = document.getElementsByClassName("collection-item");
   for (var i = 0; i < item_list.length; i++) {
     if (
-      item_list[i].parentElement.id == "car-part-list" &&
+      item_list[i].parentElement.id == "product-part-list" &&
       item_list[i].classList.contains("active")
     ) {
       active_array.push(item_list[i]);
@@ -399,7 +399,7 @@ async function init_web3() {
     }
   ]);
 
-  window.pm.options.address = "0x1EF64Cd0f5a955B4d9999219f02F34BA956A79af";
+  window.pm.options.address = "0x7D17D623307feF603A7567513903BECa67E529A0";
   window.co = new web3.eth.Contract([
     {
       constant: true,
@@ -544,7 +544,7 @@ async function init_web3() {
       signature: "0xac814490"
     }
   ]);
-  window.co.options.address = "0x5109Ff2bd26D8494C21dF0e6bf505FaBdAC2b926";
+  window.co.options.address = "0x71569eb6dBDA3f1c8A79a350e4c39CD26fC8888b";
 }
 
 async function getOwnerHistoryFromEvents(event, p_hash) {
@@ -617,7 +617,7 @@ function dealerProductListManager() {
       "TransferProductOwnership",
       this.textContent
     ).then(owners => {
-      populateOwnerDetails(owners, "car-owners");
+      populateOwnerDetails(owners, "product-owners");
     });
   } else {
     clearOwnerDetails();
@@ -678,12 +678,12 @@ export {
   toggleActive,
   clearActiveExcept,
   populateDetails,
-  populateCarDetails,
+  populateproductDetails,
   clearDetails,
-  clearCarDetails,
+  clearproductDetails,
   partListManager,
-  carPartListManager,
-  carListManager,
+  productPartListManager,
+  productListManager,
   addItemToList,
   format_date,
   getActivePart,
